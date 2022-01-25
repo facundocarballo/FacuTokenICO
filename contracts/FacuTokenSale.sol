@@ -7,6 +7,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract FacuTokenSale {
     address payable public admin;
+    address payable private ethFunds = payable(0xD35c657500a074A03E367d8EC2f939fada73f839);
     FacuToken public token;
     uint256 public tokensSold;
     int public tokenPriceUSD;
@@ -50,7 +51,7 @@ contract FacuTokenSale {
         // transfer returns a boolean value.
         require(token.transfer(msg.sender, _amount));
         // Transfer the ETH of the buyer to us
-        admin.transfer(msg.value);
+        ethFunds.transfer(msg.value);
         // Increase the amount of tokens sold
         tokensSold += _amount;
         // Increase the amount of transactions
