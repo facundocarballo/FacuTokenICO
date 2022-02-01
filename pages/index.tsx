@@ -88,12 +88,23 @@ const Home: NextPage = () => {
     isLoading() ? <Loading /> :
     <VStack minH='800px' w='full' bg={bg}>
       <HeaderFT />
+      {/* Desktop */}
       <HStack w='md' display={{lg: 'flex', md: 'flex', sm: 'none', base: 'none'}}>
         <Heading size='md'>1FT = 50 USD = {FTtoETH} ETH</Heading>
         <Spacer/>
         <Link href='https://faucets.chain.link/' isExternal>
           <Button bg='gray.600' color='gray.200' variant='link' w='100px' minH='40px'>Get ETH</Button>
         </Link>
+      </HStack>
+      {/* Mobile */}
+      <HStack w='full' display={{lg: 'none', md: 'none', sm: 'flex', base: 'flex'}}>
+        <Box w='5px'/>
+        <Heading size='md'>1FT = 50 USD = {FTtoETH} ETH</Heading>
+        <Spacer/>
+        <Link href='https://faucets.chain.link/' isExternal>
+          <Button bg='gray.600' color='gray.200' variant='link' w='100px' minH='40px'>Get ETH</Button>
+        </Link>
+        <Box w='5px'/>
       </HStack>
       <Box h='10px'/>
       {/* Desktop */}
@@ -246,8 +257,8 @@ const Home: NextPage = () => {
           </HStack>
           <Box h='10px'/>
           {
-            transactions.map((tran) =>
-            <HStack w='full'>
+            transactions.map((tran, idx) =>
+            <HStack w='full' key={idx}>
               <Box w='10px' />
               <Text fontSize='xs'>{tran[0]}</Text>
               <Spacer />
